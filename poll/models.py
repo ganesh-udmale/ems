@@ -25,6 +25,10 @@ class Question(ObjectTracking):
     def __str__(self):
         return self.title
 
+    @property
+    def choices(self):
+        return self.choice_set.all()
+
 class Choice(models.Model):
     question = models.ForeignKey('poll.Question', on_delete=models.CASCADE)
     text = models.TextField(null=True, blank=True)
@@ -35,6 +39,9 @@ class Choice(models.Model):
     def __str__(self):
         return self.text
 
+    @property
+    def votes(self):
+        return self.answer_set.count()
 
 
 class Answer(models.Model):

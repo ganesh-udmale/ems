@@ -22,6 +22,7 @@
                             {{question.title}}
                         </td>
                         <td class="text-center">
+                          <a class="btn btn-primary" href="{%  url 'poll_details' question.id %}">Details</a>
                         </td>
                     </tr>
                 {% endfor %}
