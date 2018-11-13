@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+TEMPRARY_DIR = os.path.join(BASE_DIR, 'ems', 'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'employee',
+    'poll'
 ]
 
 MIDDLEWARE = [
@@ -54,8 +56,10 @@ ROOT_URLCONF = 'ems.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
         'APP_DIRS': True,
+        'DIRS': [
+            os.path.join(BASE_DIR, 'ems', 'templates'),
+        ],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
