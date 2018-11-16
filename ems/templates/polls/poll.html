@@ -5,6 +5,7 @@
     <p>
         <h3>{{question.title}}</h3>
     </p>
+    <h6 style="color:red"><i>{{ error }}</i> </h6>
     <form method="POST" action="{% url 'poll_vote' question.id %}">
         {% csrf_token %}
     {% for choice in question.choices %}

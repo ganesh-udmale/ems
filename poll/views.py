@@ -35,11 +35,15 @@ def vote_poll(request, id=None):
         user_id = 1
         print(request.POST)
         data = request.POST
-        ret = Answer.objects.create(user_id=user_id, choice_id=data['choice'])
-        if ret:
-            return HttpResponseRedirect(reverse('poll_details', args=[question.id]))
-        else:
-            context["error"] = "Your vote is not done successfully"
+        try:
+            ret = Answer.objects.create(user_id=user_id, choice_id=data['choice'])
+            if ret:
+                return HttpResponseRedirect(reverse('poll_details', args=[question.id]))
+            else:
+                context["error"] = "Your vote is not done successfully."
+                return render(request, 'polls/poll.html', context)
+        except:
+            context["error"] = "Your vote is not done successfully."
             return render(request, 'polls/poll.html', context)
     else:
         return render(request, 'polls/poll.html', context)
